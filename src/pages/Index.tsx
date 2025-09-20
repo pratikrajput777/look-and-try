@@ -12,6 +12,9 @@ import {
   Smartphone 
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import heroBg from "@/assets/hero-bg.jpg";
+import aiFashionDemo from "@/assets/ai-fashion-demo.jpg";
+import mobileTryon from "@/assets/mobile-tryon.jpg";
 
 const Index = () => {
   const navigate = useNavigate();
@@ -42,7 +45,17 @@ const Index = () => {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <div className="relative overflow-hidden">
+      <div className="relative overflow-hidden min-h-screen">
+        {/* Background Hero Image */}
+        <div className="absolute inset-0">
+          <img 
+            src={heroBg} 
+            alt="AI Virtual Try-On Technology" 
+            className="w-full h-full object-cover opacity-20"
+          />
+          <div className="absolute inset-0 bg-gradient-to-br from-background/80 to-background/60"></div>
+        </div>
+        
         {/* Background decorative elements */}
         <div className="absolute inset-0">
           <div className="absolute -top-40 -right-32 w-80 h-80 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-full blur-3xl animate-float"></div>
@@ -120,6 +133,45 @@ const Index = () => {
                 </Card>
               );
             })}
+          </div>
+
+          {/* AI Showcase Section */}
+          <div className="mb-20">
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
+              <div>
+                <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gradient-primary">
+                  See AI Magic in Action
+                </h2>
+                <p className="text-lg text-muted-foreground mb-8">
+                  Our advanced AI technology analyzes your photo and seamlessly applies clothing items, 
+                  creating realistic virtual try-on experiences for all ages and clothing categories.
+                </p>
+                <div className="grid grid-cols-2 gap-4 mb-8">
+                  <div className="text-center p-4 bg-white/50 rounded-lg card-elegant">
+                    <div className="text-2xl font-bold text-primary">99%</div>
+                    <div className="text-sm text-muted-foreground">Accuracy</div>
+                  </div>
+                  <div className="text-center p-4 bg-white/50 rounded-lg card-elegant">
+                    <div className="text-2xl font-bold text-primary">2s</div>
+                    <div className="text-sm text-muted-foreground">Processing</div>
+                  </div>
+                </div>
+              </div>
+              <div className="relative">
+                <img 
+                  src={aiFashionDemo} 
+                  alt="AI Fashion Try-On Demo"
+                  className="w-full h-auto rounded-2xl card-elegant"
+                />
+                <div className="absolute -bottom-4 -right-4 w-32 h-32">
+                  <img 
+                    src={mobileTryon} 
+                    alt="Mobile Try-On"
+                    className="w-full h-full object-cover rounded-xl card-elegant"
+                  />
+                </div>
+              </div>
+            </div>
           </div>
 
           {/* How it Works */}
