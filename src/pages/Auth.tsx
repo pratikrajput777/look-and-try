@@ -3,7 +3,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Sparkles, Camera, Upload, Users, Smartphone, MessageSquare } from "lucide-react";
+import { Sparkles, Smartphone, MessageSquare, Star, Zap, Shield } from "lucide-react";
+import authBgFashion from "@/assets/auth-bg-fashion.jpg";
 import { useNavigate } from "react-router-dom";
 
 const Auth = () => {
@@ -45,33 +46,72 @@ const Auth = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4">
-      {/* Background decorative elements */}
+    <div className="min-h-screen flex items-center justify-center p-4 relative">
+      {/* Creative fashion background */}
       <div className="absolute inset-0 overflow-hidden">
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-40"
+          style={{backgroundImage: `url(${authBgFashion})`}}
+        ></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-secondary/10"></div>
         <div className="absolute -top-40 -right-32 w-80 h-80 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-full blur-3xl animate-float"></div>
         <div className="absolute -bottom-40 -left-32 w-80 h-80 bg-gradient-to-br from-secondary/20 to-primary/20 rounded-full blur-3xl animate-float" style={{animationDelay: '1.5s'}}></div>
       </div>
 
       <div className="relative z-10 w-full max-w-md">
-        {/* Logo and branding */}
+        {/* Enhanced Logo and branding */}
         <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-16 h-16 bg-white rounded-2xl card-elegant mb-4 animate-pulse-glow">
-            <Sparkles className="w-8 h-8 text-gradient-primary" />
+          <div className="inline-flex items-center justify-center w-20 h-20 bg-white rounded-3xl card-elegant mb-6 animate-pulse-glow relative">
+            <Sparkles className="w-10 h-10 text-gradient-primary" />
+            <div className="absolute -top-2 -right-2 w-6 h-6 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full flex items-center justify-center">
+              <Star className="w-3 h-3 text-white" />
+            </div>
           </div>
-          <h1 className="text-3xl font-bold text-gradient-hero mb-2">
+          <h1 className="text-4xl font-bold text-gradient-hero mb-3">
             AI Virtual Try-On
           </h1>
-          <p className="text-muted-foreground">
+          <p className="text-lg text-muted-foreground mb-4">
             Experience fashion with AI technology
           </p>
+          <div className="flex items-center justify-center gap-6 text-sm text-muted-foreground">
+            <div className="flex items-center gap-2">
+              <Zap className="w-4 h-4 text-yellow-500" />
+              <span>Instant Results</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <Shield className="w-4 h-4 text-green-500" />
+              <span>Secure & Private</span>
+            </div>
+          </div>
         </div>
 
-        <Card className="card-elegant backdrop-blur-sm bg-white/90">
-          <CardHeader>
-            <CardTitle className="text-center text-2xl">Welcome</CardTitle>
-            <CardDescription className="text-center">
-              Sign in to start your virtual fashion journey
+        <Card className="card-elegant backdrop-blur-sm bg-white/95 border-2 border-white/50">
+          <CardHeader className="text-center space-y-4 pb-6">
+            <div className="flex items-center justify-center gap-2">
+              <div className="w-8 h-8 bg-gradient-to-r from-primary to-secondary rounded-lg flex items-center justify-center">
+                <Sparkles className="w-5 h-5 text-white" />
+              </div>
+              <CardTitle className="text-3xl font-bold text-gradient-hero">Welcome Back</CardTitle>
+            </div>
+            <CardDescription className="text-lg">
+              Transform your style with AI-powered virtual try-ons
             </CardDescription>
+            <div className="flex items-center justify-center gap-4 pt-2">
+              <div className="text-center">
+                <div className="text-2xl font-bold text-primary">99%</div>
+                <div className="text-xs text-muted-foreground">Accuracy</div>
+              </div>
+              <div className="w-px h-8 bg-border"></div>
+              <div className="text-center">
+                <div className="text-2xl font-bold text-primary">1M+</div>
+                <div className="text-xs text-muted-foreground">Users</div>
+              </div>
+              <div className="w-px h-8 bg-border"></div>
+              <div className="text-center">
+                <div className="text-2xl font-bold text-primary">5s</div>
+                <div className="text-xs text-muted-foreground">Process</div>
+              </div>
+            </div>
           </CardHeader>
           <CardContent>
             <Tabs defaultValue="login" className="w-full">
@@ -235,34 +275,6 @@ const Auth = () => {
             </Tabs>
           </CardContent>
         </Card>
-
-        {/* Features preview */}
-        <div className="grid grid-cols-4 gap-4 mt-8">
-          <div className="text-center">
-            <div className="w-12 h-12 bg-white rounded-lg card-elegant flex items-center justify-center mx-auto mb-2">
-              <Camera className="w-6 h-6 text-primary" />
-            </div>
-            <p className="text-sm text-muted-foreground">Camera</p>
-          </div>
-          <div className="text-center">
-            <div className="w-12 h-12 bg-white rounded-lg card-elegant flex items-center justify-center mx-auto mb-2">
-              <Upload className="w-6 h-6 text-primary" />
-            </div>
-            <p className="text-sm text-muted-foreground">Upload</p>
-          </div>
-          <div className="text-center">
-            <div className="w-12 h-12 bg-white rounded-lg card-elegant flex items-center justify-center mx-auto mb-2">
-              <Smartphone className="w-6 h-6 text-primary" />
-            </div>
-            <p className="text-sm text-muted-foreground">Mobile OTP</p>
-          </div>
-          <div className="text-center">
-            <div className="w-12 h-12 bg-white rounded-lg card-elegant flex items-center justify-center mx-auto mb-2">
-              <Users className="w-6 h-6 text-primary" />
-            </div>
-            <p className="text-sm text-muted-foreground">All Ages</p>
-          </div>
-        </div>
       </div>
     </div>
   );
