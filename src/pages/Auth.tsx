@@ -3,13 +3,16 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Sparkles, Camera, Upload, Users } from "lucide-react";
+import { Sparkles, Camera, Upload, Users, Smartphone, MessageSquare } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 const Auth = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
+  const [mobile, setMobile] = useState("");
+  const [otp, setOtp] = useState("");
+  const [otpSent, setOtpSent] = useState(false);
   const navigate = useNavigate();
 
   const handleLogin = (e: React.FormEvent) => {
@@ -22,6 +25,23 @@ const Auth = () => {
     e.preventDefault();
     // For now, just navigate to main app
     navigate("/try-on");
+  };
+
+  const handleMobileLogin = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!otpSent) {
+      // Send OTP
+      setOtpSent(true);
+    } else {
+      // Verify OTP and login
+      navigate("/try-on");
+    }
+  };
+
+  const sendOtp = () => {
+    if (mobile.length >= 10) {
+      setOtpSent(true);
+    }
   };
 
   return (
@@ -55,8 +75,9 @@ const Auth = () => {
           </CardHeader>
           <CardContent>
             <Tabs defaultValue="login" className="w-full">
-              <TabsList className="grid w-full grid-cols-2">
-                <TabsTrigger value="login">Login</TabsTrigger>
+              <TabsList className="grid w-full grid-cols-3">
+                <TabsTrigger value="login">Email</TabsTrigger>
+                <TabsTrigger value="mobile">Mobile</TabsTrigger>
                 <TabsTrigger value="signup">Sign Up</TabsTrigger>
               </TabsList>
               
@@ -90,6 +111,73 @@ const Auth = () => {
                   </Button>
                 </form>
               </TabsContent>
+
+              <TabsContent value="mobile" className="space-y-4 mt-6">
+                <form onSubmit={handleMobileLogin} className="space-y-4">
+                  <div className="space-y-2">
+                    <div className="relative">
+                      <Smartphone className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-muted-foreground" />
+                      <Input
+                        type="tel"
+                        placeholder="+91 98765 43210"
+                        value={mobile}
+                        onChange={(e) => setMobile(e.target.value)}
+                        className="h-12 pl-12"
+                        required
+                        disabled={otpSent}
+                      />
+                    </div>
+                  </div>
+                  
+                  {!otpSent ? (
+                    <Button 
+                      type="button"
+                      onClick={sendOtp}
+                      className="w-full h-12 btn-gradient-primary text-lg font-semibold"
+                      disabled={mobile.length < 10}
+                    >
+                      Send OTP
+                    </Button>
+                  ) : (
+                    <>
+                      <div className="space-y-2">
+                        <div className="relative">
+                          <MessageSquare className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-muted-foreground" />
+                          <Input
+                            type="text"
+                            placeholder="Enter 6-digit OTP"
+                            value={otp}
+                            onChange={(e) => setOtp(e.target.value)}
+                            className="h-12 pl-12"
+                            maxLength={6}
+                            required
+                          />
+                        </div>
+                      </div>
+                      <div className="flex gap-3">
+                        <Button 
+                          type="button"
+                          variant="outline"
+                          onClick={() => {setOtpSent(false); setOtp("");}}
+                          className="flex-1 h-12"
+                        >
+                          Change Number
+                        </Button>
+                        <Button 
+                          type="submit" 
+                          className="flex-1 h-12 btn-gradient-primary text-lg font-semibold"
+                          disabled={otp.length < 6}
+                        >
+                          Verify OTP
+                        </Button>
+                      </div>
+                      <p className="text-center text-sm text-muted-foreground">
+                        OTP sent to {mobile}
+                      </p>
+                    </>
+                  )}
+                </form>
+              </TabsContent>
               
               <TabsContent value="signup" className="space-y-4 mt-6">
                 <form onSubmit={handleSignup} className="space-y-4">
@@ -114,6 +202,19 @@ const Auth = () => {
                     />
                   </div>
                   <div className="space-y-2">
+                    <div className="relative">
+                      <Smartphone className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-muted-foreground" />
+                      <Input
+                        type="tel"
+                        placeholder="+91 98765 43210"
+                        value={mobile}
+                        onChange={(e) => setMobile(e.target.value)}
+                        className="h-12 pl-12"
+                        required
+                      />
+                    </div>
+                  </div>
+                  <div className="space-y-2">
                     <Input
                       type="password"
                       placeholder="Create password"
@@ -136,7 +237,7 @@ const Auth = () => {
         </Card>
 
         {/* Features preview */}
-        <div className="grid grid-cols-3 gap-4 mt-8">
+        <div className="grid grid-cols-4 gap-4 mt-8">
           <div className="text-center">
             <div className="w-12 h-12 bg-white rounded-lg card-elegant flex items-center justify-center mx-auto mb-2">
               <Camera className="w-6 h-6 text-primary" />
@@ -148,6 +249,12 @@ const Auth = () => {
               <Upload className="w-6 h-6 text-primary" />
             </div>
             <p className="text-sm text-muted-foreground">Upload</p>
+          </div>
+          <div className="text-center">
+            <div className="w-12 h-12 bg-white rounded-lg card-elegant flex items-center justify-center mx-auto mb-2">
+              <Smartphone className="w-6 h-6 text-primary" />
+            </div>
+            <p className="text-sm text-muted-foreground">Mobile OTP</p>
           </div>
           <div className="text-center">
             <div className="w-12 h-12 bg-white rounded-lg card-elegant flex items-center justify-center mx-auto mb-2">
