@@ -12,8 +12,8 @@ import {
   Smartphone 
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import heroBg from "@/assets/hero-bg.jpg";
-import aiFashionDemo from "@/assets/ai-fashion-demo.jpg";
+import heroBg from "@/assets/hero-bg-3d.jpg";
+import aiFashionDemo from "@/assets/indian-fashion-demo.jpg";
 import mobileTryon from "@/assets/mobile-tryon.jpg";
 
 const Index = () => {
