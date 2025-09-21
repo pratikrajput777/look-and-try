@@ -58,9 +58,11 @@ const Index = () => {
         
         {/* Background decorative elements */}
         <div className="absolute inset-0">
-          <div className="absolute -top-40 -right-32 w-80 h-80 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-full blur-3xl animate-float"></div>
-          <div className="absolute -bottom-40 -left-32 w-80 h-80 bg-gradient-to-br from-secondary/20 to-primary/20 rounded-full blur-3xl animate-float" style={{animationDelay: '1.5s'}}></div>
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-br from-primary/10 to-secondary/10 rounded-full blur-3xl animate-float" style={{animationDelay: '3s'}}></div>
+          <div className="absolute -top-40 -right-32 w-80 h-80 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-full blur-3xl animate-move-around"></div>
+          <div className="absolute -bottom-40 -left-32 w-80 h-80 bg-gradient-to-br from-secondary/20 to-primary/20 rounded-full blur-3xl animate-drift" style={{animationDelay: '2s'}}></div>
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-br from-primary/10 to-secondary/10 rounded-full blur-3xl animate-slide-diagonal" style={{animationDelay: '4s'}}></div>
+          <div className="absolute top-20 left-20 w-32 h-32 bg-gradient-to-br from-accent/30 to-primary/30 rounded-full blur-2xl animate-float" style={{animationDelay: '1s'}}></div>
+          <div className="absolute bottom-32 right-20 w-48 h-48 bg-gradient-to-br from-secondary/25 to-accent/25 rounded-full blur-2xl animate-drift" style={{animationDelay: '3s'}}></div>
         </div>
 
         <div className="relative z-10 max-w-6xl mx-auto px-4 py-20">
@@ -161,9 +163,9 @@ const Index = () => {
                 <img 
                   src={aiFashionDemo} 
                   alt="AI Fashion Try-On Demo"
-                  className="w-full h-auto rounded-2xl card-elegant"
+                  className="w-full h-auto rounded-2xl card-elegant animate-float"
                 />
-                <div className="absolute -bottom-4 -right-4 w-32 h-32">
+                <div className="absolute -bottom-4 -right-4 w-32 h-32 animate-drift">
                   <img 
                     src={mobileTryon} 
                     alt="Mobile Try-On"
