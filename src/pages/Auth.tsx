@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { CountrySelect } from "@/components/ui/country-select";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Sparkles, Smartphone, MessageSquare, Star, Zap, Shield } from "lucide-react";
@@ -12,6 +13,7 @@ const Auth = () => {
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
   const [mobile, setMobile] = useState("");
+  const [countryCode, setCountryCode] = useState("+91");
   const [otp, setOtp] = useState("");
   const [otpSent, setOtpSent] = useState(false);
   const [countdown, setCountdown] = useState(0);
@@ -170,17 +172,20 @@ const Auth = () => {
               <TabsContent value="mobile" className="space-y-4 mt-6">
                 <form onSubmit={handleMobileLogin} className="space-y-4">
                   <div className="space-y-2">
-                    <div className="relative">
-                      <Smartphone className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-muted-foreground" />
-                      <Input
-                        type="tel"
-                        placeholder="+91 98765 43210"
-                        value={mobile}
-                        onChange={(e) => setMobile(e.target.value)}
-                        className="h-12 pl-12"
-                        required
-                        disabled={otpSent}
-                      />
+                    <div className="relative flex">
+                      <CountrySelect value={countryCode} onValueChange={setCountryCode} />
+                      <div className="relative flex-1 ml-2">
+                        <Smartphone className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-muted-foreground" />
+                        <Input
+                          type="tel"
+                          placeholder="98765 43210"
+                          value={mobile}
+                          onChange={(e) => setMobile(e.target.value)}
+                          className="h-12 pl-12"
+                          required
+                          disabled={otpSent}
+                        />
+                      </div>
                     </div>
                   </div>
                   
@@ -228,7 +233,7 @@ const Auth = () => {
                       </div>
                       <div className="text-center space-y-2">
                         <p className="text-sm text-muted-foreground">
-                          OTP sent to {mobile}
+                          OTP sent to {countryCode} {mobile}
                         </p>
                         {countdown > 0 ? (
                           <p className="text-sm text-primary font-medium">
@@ -273,16 +278,19 @@ const Auth = () => {
                     />
                   </div>
                   <div className="space-y-2">
-                    <div className="relative">
-                      <Smartphone className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-muted-foreground" />
-                      <Input
-                        type="tel"
-                        placeholder="+91 98765 43210"
-                        value={mobile}
-                        onChange={(e) => setMobile(e.target.value)}
-                        className="h-12 pl-12"
-                        required
-                      />
+                    <div className="relative flex">
+                      <CountrySelect value={countryCode} onValueChange={setCountryCode} />
+                      <div className="relative flex-1 ml-2">
+                        <Smartphone className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-muted-foreground" />
+                        <Input
+                          type="tel"
+                          placeholder="98765 43210"
+                          value={mobile}
+                          onChange={(e) => setMobile(e.target.value)}
+                          className="h-12 pl-12"
+                          required
+                        />
+                      </div>
                     </div>
                   </div>
                   <div className="space-y-2">

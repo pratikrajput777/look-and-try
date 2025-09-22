@@ -12,7 +12,9 @@ import {
   UserCheck,
   ArrowRight,
   Image as ImageIcon,
-  Wand2
+  Wand2,
+  Crown,
+  Watch
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
@@ -37,18 +39,18 @@ const TryOn = () => {
       color: "bg-pink-500"
     },
     {
-      id: "adult",
-      title: "Adults",
-      icon: Users,
-      description: "Formal & casual wear",
-      color: "bg-purple-500"
-    },
-    {
       id: "child",
       title: "Children",
       icon: Baby,
       description: "Kids clothing & accessories",
       color: "bg-green-500"
+    },
+    {
+      id: "accessories",
+      title: "Accessories",
+      icon: Watch,
+      description: "Watches, bags, jewelry & more",
+      color: "bg-purple-500"
     }
   ];
 
@@ -77,8 +79,8 @@ const TryOn = () => {
       alert("Please upload an image or take a photo!");
       return;
     }
-    // Navigate to try-on results
-    alert("Starting AI Virtual Try-On process...");
+    // Navigate to product catalog
+    navigate(`/catalog/${selectedCategory}`);
   };
 
   return (
@@ -105,9 +107,9 @@ const TryOn = () => {
         </header>
 
         {/* Main Content */}
-        <div className="grid lg:grid-cols-2 gap-8">
+        <div className="grid lg:grid-cols-5 gap-8">
           {/* Left Panel - Upload & Categories */}
-          <div className="space-y-6">
+          <div className="lg:col-span-3 space-y-6">
             {/* Image Upload Section */}
             <Card className="card-elegant">
               <CardHeader>
@@ -234,7 +236,7 @@ const TryOn = () => {
           </div>
 
           {/* Right Panel - Preview & Actions */}
-          <div className="space-y-6">
+          <div className="lg:col-span-2 space-y-6">
             {/* Try-On Preview */}
             <Card className="card-elegant">
               <CardHeader>
