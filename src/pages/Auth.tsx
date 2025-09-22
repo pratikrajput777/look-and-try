@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -14,6 +14,7 @@ const Auth = () => {
   const [mobile, setMobile] = useState("");
   const [otp, setOtp] = useState("");
   const [otpSent, setOtpSent] = useState(false);
+  const [countdown, setCountdown] = useState(0);
   const navigate = useNavigate();
 
   const handleLogin = (e: React.FormEvent) => {
@@ -42,8 +43,22 @@ const Auth = () => {
   const sendOtp = () => {
     if (mobile.length >= 10) {
       setOtpSent(true);
+      setCountdown(60); // Start 60 second countdown
     }
   };
+
+  const resendOtp = () => {
+    setCountdown(60);
+  };
+
+  // Countdown timer effect
+  useEffect(() => {
+    let timer: NodeJS.Timeout;
+    if (countdown > 0) {
+      timer = setTimeout(() => setCountdown(countdown - 1), 1000);
+    }
+    return () => clearTimeout(timer);
+  }, [countdown]);
 
   return (
     <div className="min-h-screen flex items-center justify-center p-4 relative">
@@ -198,7 +213,7 @@ const Auth = () => {
                         <Button 
                           type="button"
                           variant="outline"
-                          onClick={() => {setOtpSent(false); setOtp("");}}
+                          onClick={() => {setOtpSent(false); setOtp(""); setCountdown(0);}}
                           className="flex-1 h-12"
                         >
                           Change Number
@@ -211,9 +226,25 @@ const Auth = () => {
                           Verify OTP
                         </Button>
                       </div>
-                      <p className="text-center text-sm text-muted-foreground">
-                        OTP sent to {mobile}
-                      </p>
+                      <div className="text-center space-y-2">
+                        <p className="text-sm text-muted-foreground">
+                          OTP sent to {mobile}
+                        </p>
+                        {countdown > 0 ? (
+                          <p className="text-sm text-primary font-medium">
+                            Resend OTP in {Math.floor(countdown / 60)}:{(countdown % 60).toString().padStart(2, '0')} min
+                          </p>
+                        ) : (
+                          <Button 
+                            type="button"
+                            variant="link"
+                            onClick={resendOtp}
+                            className="text-sm p-0 h-auto"
+                          >
+                            Resend OTP
+                          </Button>
+                        )}
+                      </div>
                     </>
                   )}
                 </form>
