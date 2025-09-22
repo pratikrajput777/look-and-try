@@ -86,7 +86,7 @@ const TryOn = () => {
   return (
     <div className="min-h-screen p-4">
       {/* Header */}
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-7xl mx-auto px-2">
         <header className="flex items-center justify-between mb-8">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white rounded-xl card-elegant flex items-center justify-center">
@@ -107,9 +107,9 @@ const TryOn = () => {
         </header>
 
         {/* Main Content */}
-        <div className="grid lg:grid-cols-5 gap-8">
+        <div className="grid lg:grid-cols-3 gap-6">
           {/* Left Panel - Upload & Categories */}
-          <div className="lg:col-span-3 space-y-6">
+          <div className="lg:col-span-2 space-y-6">
             {/* Image Upload Section */}
             <Card className="card-elegant">
               <CardHeader>
@@ -236,7 +236,7 @@ const TryOn = () => {
           </div>
 
           {/* Right Panel - Preview & Actions */}
-          <div className="lg:col-span-2 space-y-6">
+          <div className="lg:col-span-1 space-y-6">
             {/* Try-On Preview */}
             <Card className="card-elegant">
               <CardHeader>

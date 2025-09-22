@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { InputOTP, InputOTPGroup, InputOTPSlot } from "@/components/ui/input-otp";
 import { CountrySelect } from "@/components/ui/country-select";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -201,17 +202,21 @@ const Auth = () => {
                   ) : (
                     <>
                       <div className="space-y-2">
-                        <div className="relative">
-                          <MessageSquare className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-muted-foreground" />
-                          <Input
-                            type="text"
-                            placeholder="Enter 6-digit OTP"
-                            value={otp}
-                            onChange={(e) => setOtp(e.target.value)}
-                            className="h-12 pl-12"
-                            maxLength={6}
-                            required
-                          />
+                        <div className="flex flex-col items-center space-y-2">
+                          <MessageSquare className="w-5 h-5 text-muted-foreground" />
+                          <InputOTP 
+                            maxLength={4} 
+                            value={otp} 
+                            onChange={(value) => setOtp(value)}
+                          >
+                            <InputOTPGroup>
+                              <InputOTPSlot index={0} />
+                              <InputOTPSlot index={1} />
+                              <InputOTPSlot index={2} />
+                              <InputOTPSlot index={3} />
+                            </InputOTPGroup>
+                          </InputOTP>
+                          <p className="text-xs text-muted-foreground">Enter 4-digit OTP</p>
                         </div>
                       </div>
                       <div className="flex gap-3">
@@ -226,7 +231,7 @@ const Auth = () => {
                         <Button 
                           type="submit" 
                           className="flex-1 h-12 btn-gradient-primary text-lg font-semibold"
-                          disabled={otp.length < 6}
+                          disabled={otp.length < 4}
                         >
                           Verify OTP
                         </Button>
