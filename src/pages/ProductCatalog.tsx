@@ -13,6 +13,13 @@ import {
   Grid3X3
 } from "lucide-react";
 import { useNavigate, useParams } from "react-router-dom";
+import menShirt from "@/assets/products/men-shirt.jpg";
+import menPants from "@/assets/products/men-pants.jpg";
+import womenDress from "@/assets/products/women-dress.jpg";
+import womenTop from "@/assets/products/women-top.jpg";
+import childTshirt from "@/assets/products/child-tshirt.jpg";
+import watch from "@/assets/products/watch.jpg";
+import bag from "@/assets/products/bag.jpg";
 
 const ProductCatalog = () => {
   const navigate = useNavigate();
@@ -25,25 +32,25 @@ const ProductCatalog = () => {
   const getProducts = (cat: string) => {
     const baseProducts = {
       men: [
-        { id: 1, name: "Classic Cotton Shirt", price: 2999, image: "/placeholder.svg", colors: ["White", "Blue", "Black"], sizes: ["S", "M", "L", "XL"], available: true, rating: 4.5 },
-        { id: 2, name: "Formal Pants", price: 3999, image: "/placeholder.svg", colors: ["Black", "Navy", "Grey"], sizes: ["30", "32", "34", "36"], available: true, rating: 4.3 },
-        { id: 3, name: "Denim Jacket", price: 5999, image: "/placeholder.svg", colors: ["Blue", "Black"], sizes: ["S", "M", "L", "XL"], available: false, rating: 4.7 },
-        { id: 4, name: "Casual T-Shirt", price: 1499, image: "/placeholder.svg", colors: ["White", "Red", "Green"], sizes: ["S", "M", "L", "XL"], available: true, rating: 4.2 },
+        { id: 1, name: "Classic Cotton Shirt", price: 2999, image: menShirt, colors: ["White", "Blue", "Black"], sizes: ["S", "M", "L", "XL"], available: true, rating: 4.5 },
+        { id: 2, name: "Formal Pants", price: 3999, image: menPants, colors: ["Black", "Navy", "Grey"], sizes: ["30", "32", "34", "36"], available: true, rating: 4.3 },
+        { id: 3, name: "Denim Jacket", price: 5999, image: menShirt, colors: ["Blue", "Black"], sizes: ["S", "M", "L", "XL"], available: false, rating: 4.7 },
+        { id: 4, name: "Casual T-Shirt", price: 1499, image: menShirt, colors: ["White", "Red", "Green"], sizes: ["S", "M", "L", "XL"], available: true, rating: 4.2 },
       ],
       women: [
-        { id: 5, name: "Elegant Dress", price: 4999, image: "/placeholder.svg", colors: ["Red", "Black", "Navy"], sizes: ["XS", "S", "M", "L"], available: true, rating: 4.6 },
-        { id: 6, name: "Casual Top", price: 2499, image: "/placeholder.svg", colors: ["Pink", "White", "Yellow"], sizes: ["XS", "S", "M", "L"], available: true, rating: 4.4 },
-        { id: 7, name: "Designer Skirt", price: 3499, image: "/placeholder.svg", colors: ["Black", "Blue"], sizes: ["XS", "S", "M", "L"], available: true, rating: 4.5 },
-        { id: 8, name: "Blouse", price: 2999, image: "/placeholder.svg", colors: ["White", "Cream"], sizes: ["XS", "S", "M", "L"], available: false, rating: 4.3 },
+        { id: 5, name: "Elegant Dress", price: 4999, image: womenDress, colors: ["Red", "Black", "Navy"], sizes: ["XS", "S", "M", "L"], available: true, rating: 4.6 },
+        { id: 6, name: "Casual Top", price: 2499, image: womenTop, colors: ["Pink", "White", "Yellow"], sizes: ["XS", "S", "M", "L"], available: true, rating: 4.4 },
+        { id: 7, name: "Designer Skirt", price: 3499, image: womenDress, colors: ["Black", "Blue"], sizes: ["XS", "S", "M", "L"], available: true, rating: 4.5 },
+        { id: 8, name: "Blouse", price: 2999, image: womenTop, colors: ["White", "Cream"], sizes: ["XS", "S", "M", "L"], available: false, rating: 4.3 },
       ],
       child: [
-        { id: 9, name: "Kids T-Shirt", price: 999, image: "/placeholder.svg", colors: ["Blue", "Pink", "Yellow"], sizes: ["2-3Y", "4-5Y", "6-7Y"], available: true, rating: 4.8 },
-        { id: 10, name: "School Uniform", price: 1999, image: "/placeholder.svg", colors: ["White", "Blue"], sizes: ["2-3Y", "4-5Y", "6-7Y", "8-9Y"], available: true, rating: 4.6 },
+        { id: 9, name: "Kids T-Shirt", price: 999, image: childTshirt, colors: ["Blue", "Pink", "Yellow"], sizes: ["2-3Y", "4-5Y", "6-7Y"], available: true, rating: 4.8 },
+        { id: 10, name: "School Uniform", price: 1999, image: childTshirt, colors: ["White", "Blue"], sizes: ["2-3Y", "4-5Y", "6-7Y", "8-9Y"], available: true, rating: 4.6 },
       ],
       accessories: [
-        { id: 11, name: "Leather Watch", price: 7999, image: "/placeholder.svg", colors: ["Brown", "Black"], sizes: ["One Size"], available: true, rating: 4.7 },
-        { id: 12, name: "Designer Bag", price: 12999, image: "/placeholder.svg", colors: ["Black", "Brown", "Red"], sizes: ["One Size"], available: true, rating: 4.5 },
-        { id: 13, name: "Sunglasses", price: 3999, image: "/placeholder.svg", colors: ["Black", "Brown"], sizes: ["One Size"], available: false, rating: 4.4 },
+        { id: 11, name: "Leather Watch", price: 7999, image: watch, colors: ["Brown", "Black"], sizes: ["One Size"], available: true, rating: 4.7 },
+        { id: 12, name: "Designer Bag", price: 12999, image: bag, colors: ["Black", "Brown", "Red"], sizes: ["One Size"], available: true, rating: 4.5 },
+        { id: 13, name: "Sunglasses", price: 3999, image: watch, colors: ["Black", "Brown"], sizes: ["One Size"], available: false, rating: 4.4 },
       ]
     };
     return baseProducts[cat as keyof typeof baseProducts] || [];
@@ -57,8 +64,14 @@ const ProductCatalog = () => {
     accessories: "Accessories"
   };
 
-  const handleTryOn = (productId: number) => {
-    alert(`Starting virtual try-on for product ${productId}...`);
+  const handleTryOn = (product: any) => {
+    navigate("/try-on-result", { 
+      state: { 
+        productName: product.name, 
+        productImage: product.image,
+        category: category 
+      } 
+    });
   };
 
   return (
@@ -212,7 +225,7 @@ const ProductCatalog = () => {
 
                   <div className="flex gap-2 pt-2">
                     <Button 
-                      onClick={() => handleTryOn(product.id)}
+                      onClick={() => handleTryOn(product)}
                       className="flex-1 btn-gradient-primary"
                       disabled={!product.available}
                     >
