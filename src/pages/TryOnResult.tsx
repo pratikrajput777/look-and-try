@@ -15,7 +15,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 const TryOnResult = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { productName, productImage, category } = location.state || {};
+  const { productName = "Classic Product", productImage = "/placeholder.svg", category = "men" } = location.state || {};
 
   return (
     <div className="min-h-screen p-4">
@@ -67,15 +67,18 @@ const TryOnResult = () => {
             <CardContent>
               <div className="relative">
                 <img 
-                  src={productImage || "/placeholder.svg"}
+                  src={productImage}
                   alt="Try-on result"
                   className="w-full h-[500px] object-cover rounded-lg"
+                  onError={(e) => {
+                    e.currentTarget.src = "/placeholder.svg";
+                  }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent rounded-lg" />
                 <div className="absolute bottom-4 left-4 right-4">
                   <div className="flex items-center justify-between text-white">
                     <div>
-                      <h3 className="text-xl font-bold">{productName || "Product"}</h3>
+                      <h3 className="text-xl font-bold">{productName}</h3>
                       <p className="text-sm opacity-90">AI Virtual Try-On</p>
                     </div>
                     <Button size="sm" variant="secondary">
@@ -116,7 +119,7 @@ const TryOnResult = () => {
               </CardHeader>
               <CardContent className="space-y-4">
                 <div>
-                  <h3 className="text-2xl font-bold mb-2">{productName || "Classic Cotton Shirt"}</h3>
+                  <h3 className="text-2xl font-bold mb-2">{productName}</h3>
                   <div className="flex items-center gap-2 mb-4">
                     <span className="text-3xl font-bold text-primary">₹2,999</span>
                     <Badge variant="secondary">In Stock</Badge>
